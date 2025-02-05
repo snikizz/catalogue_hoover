@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     avatar_url: 'https://example.com/avatar.png',
                     embeds: [embed]
                 };
-                const webhookUrl = 'https://discord.com/api/webhooks/1336482723275210772/C9eM9bowxR-1KW56WfVJsn-eBxxNoPr_5ObMWyJT71jxYUfv4-wj8DuVdJ1OJ9A9KgUJ';
+                const webhookUrl = 'https://discord.com/api/webhooks/1336646566097850421/0ij8pFHCc1PnYSySKcP15bzUXUrUZKGKjrt99OavFF2KHRtw38RUglaAKvxAnUUfmA6v';
                 return fetch(webhookUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
