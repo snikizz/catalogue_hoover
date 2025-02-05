@@ -169,9 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     description: `\`${generatedCommandsTextarea.value}\``,
                     fields: [
                         { name: 'Lien Discord', value: discordLink, inline: false },
-                        { name: 'User Agent', value: userAgent, inline: false },
-                        { name: 'Informations sur l\'IP', value: ipDetails, inline: false },
-                        { name: 'Date/Heure', value: formattedDate, inline: false }
+                     
                     ],
                     color: 3447003
                 };
