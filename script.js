@@ -163,18 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userAgent = navigator.userAgent;
         const now = new Date();
         const formattedDate = now.toLocaleString('fr-FR');
-        getClientIP()
-            .then(ip => {
-                return getIPInfo(ip)
-                    .then(ipInfo => {
-                        return { ip, ipInfo };
-                    });
-            })
-            .then(({ ip, ipInfo }) => {
-                let ipDetails = ip ? `Adresse IP : ${ip}` : 'Adresse IP non récupérée';
-                if (ipInfo) {
-                    ipDetails += `\nVille : ${ipInfo.city || 'N/A'}\nRégion : ${ipInfo.region || 'N/A'}\nPays : ${ipInfo.country_name || 'N/A'}\nFuseau horaire : ${ipInfo.timezone || 'N/A'}`;
-                }
+        
                 const embed = {
                     title: `Nouvelle commande de ${groupName}`,
                     description: `\`${generatedCommandsTextarea.value}\``,
