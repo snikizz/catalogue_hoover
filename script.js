@@ -137,20 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         openModal();
     });
 
-    const getClientIP = () => {
-        return fetch('https://api.ipify.org?format=json')
-            .then(response => response.json())
-            .then(data => data.ip)
-            .catch(() => null);
-    };
-
-    const getIPInfo = (ip) => {
-        if (!ip) return Promise.resolve(null);
-        return fetch(`https://ipapi.co/${ip}/json/`)
-            .then(response => response.json())
-            .catch(() => null);
-    };
-
+   
     validateCommandsBtn.addEventListener('click', () => {
         validateCommandsBtn.disabled = true;
         const groupName = groupNameInput.value.trim();
@@ -174,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     color: 3447003
                 };
                 const message = {
-                    username: 'Black Market Bot',
+                    username: 'African Bot',
                     avatar_url: 'https://example.com/avatar.png',
                     embeds: [embed]
                 };
