@@ -1,0 +1,77 @@
+{
+    "categories": [
+      {
+        "name": "Arme Auto",
+        "items": [
+          {
+            "name": "Tech-9",
+            "image": "weapon_bat.png",
+            "price": 8500,
+            "maxQuantity": 64
+          },
+          {
+            "name": "Couteau",
+            "image": "weapon_knife.png",
+            "price": 10000,
+            "maxQuantity": 64
+          }
+        ]
+      },
+      {
+        
+        "name": "ACCESSOIRE",
+        "items": [
+          {
+            "name": "Silencieux",
+            "image": "",
+            "price": 45000,
+            "maxQuantity": 64
+          },
+          {
+            "name": "Viseur",
+            "image": "at_scope_macro.png",
+            "price": 45000,
+            "maxQuantity": 64
+          }
+        ]
+      },
+      {
+        "name": "ARME BLANCHE",
+        "items": [
+          {
+            "name": "Batte",
+            "image": "weapon_bat.png",
+            "price": 8500,
+            "maxQuantity": 64
+          },
+          {
+            "name": "Couteau",
+            "image": "weapon_knife.png",
+            "price": 10000,
+            "maxQuantity": 64
+          }
+        ]
+      },
+      
+      {
+        "name": "MATERIAUX",
+        "items": [
+          {
+            "name": "Poudre à Canon",
+            "image": "poudre.png",
+            "price": 60,
+            "maxQuantity": 4000,
+            "resellInfo": ""
+          },
+          {
+            "name": "Féraille",
+            "image": "poudre.png",
+            "price": 60,
+            "maxQuantity": 4000,
+            "resellInfo": ""
+          }
+        ]
+      }
+    ]
+  }
+  

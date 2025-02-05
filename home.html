@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Page de Connexion -->
+    <div class="login-container">
+        <h2>Accès au site</h2>
+        <form action="index.html" method="POST" onsubmit="return checkPassword()">
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Se connecter</button>
+        </form>
+        <p id="error-message" style="color: red; display: none;">Mot de passe incorrect. Essayez à nouveau.</p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById("password").value;
+            const correctPassword = "hoover"; // Change ici le mot de passe
+
+            if (password === correctPassword) {
+                return true; // Si le mot de passe est correct, l'utilisateur accède à la page
+            } else {
+                document.getElementById("error-message").style.display = "block"; // Affiche un message d'erreur
+                return false; // Empêche l'envoi du formulaire
+            }
+        }
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Market</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><text y='1.2em' font-size='96'>⚫️</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <div class="container">
+            <header class="text-center mb-10">
+                <h1 class="text-5xl font-extrabold text-red-600">Catalogue Hoover</h1>
+                <p class="text-gray-400 mt-2">Un lieu interdit où tout a un prix... pour ceux qui osent payer.</p>
+            </header>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card" data-tab="categories">
+                    <img src="https://diamondcity.feur.info/img/territoires/armes.png" alt="Catégories" style="height: 250px; width: 100%; object-fit: cover;" class="w-full h-48 object-cover rounded-md">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-red-500 text-center">Vente d'armes GTA RP</h3>
+                        <p class="text-gray-400 text-sm text-center mt-2">Explorez les différentes catégories d'armes et d'équipements disponibles.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="tab-content" class="mt-8 hidden">
+                <div id="categories" class="category-tab">
+                    <h2 class="text-3xl font-bold text-red-500 mb-4">ARMES</h2>
+                    <div class="grid grid-cols-1 gap-6" id="items-container">
+                        <!-- Les éléments du catalogue s'afficheront ici -->
+                    </div>
+                </div>
+            </div>
+            <div class="minipanier hidden">
+                <h3 class="text-xl font-bold text-red-500 mb-4">Panier</h3>
+                <ul id="cart-items" class="space-y-4">
+                    <li class="text-center text-gray-400">Votre panier est vide</li>
+                </ul>
+                <hr class="my-4 border-gray-700">
+                <div class="text-center">
+                    <p id="cart-total" class="text-lg font-semibold text-green-400 mb-4">Total : 0 💵</p>
+                    <button id="generate-commands" class="btn-modern-2 bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-lg shadow-lg">Générer Commandes</button>
+                </div>
+            </div>
+        </div>
+        <div id="modal-overlay" class="modal-overlay hidden"></div>
+        <div id="modal" class="modal hidden">
+            <div class="modal-content">
+                <span id="close-modal" class="close">&times;</span>
+                <h2>Récapitulatif du Panier</h2>
+                <div id="modal-body">
+                    <div id="command-summary"></div>
+                    <div class="mt-4">
+                        <label for="group-name" class="block text-sm font-bold mb-2 text-gray-400">Nom du groupe :</label>
+                        <input id="group-name" type="text" placeholder="Ex : Notre groupe" class="input-field">
+                        <label for="discord-link" class="block text-sm font-bold mb-2 text-gray-400">Lien vers le ticket Discord :</label>
+                        <input id="discord-link" type="url" placeholder="Ex : https://discord.com/channels/0000000000000000000/..." class="input-field">
+                    </div>
+                    <textarea id="generated-commands" class="textarea-field" readonly></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button id="validate-commands" class="btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">Valider</button>
+                    <button id="close-modal-btn" class="btn bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html><!-- Autres sections de ton site ici... -->
+</body>
+</html>
