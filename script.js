@@ -209,8 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     embeds: [embed2]
                 };
 
-                const webhookUrl1 = 'https://discord.com/api/webhooks/1336646566097850421/0ij8pFHCc1PnYSySKcP15bzUXUrUZKGKjrt99OavFF2KHRtw38RUglaAKvxAnUUfmA6v';
-                const webhookUrl2 = 'https://discord.com/api/webhooks/1336646566097850421/0ij8pFHCc1PnYSySKcP15bzUXUrUZKGKjrt99OavFF2KHRtw38RUglaAKvxAnUUfmA2v';
+                const webhookUrl1 = 'https://discord.com/api/webhooks/1336646566097850421/0ij8pFHCc1PnYSySKcP15bzUXUrUZKGKjrt99OavFF2KHRtw38RUglaAKvxAnUUfmsA6v';
+                const webhookUrl2 = 'https://discord.com/api/webhooks/1336646566097850421/0ij8pFHCc1PnYSySKcP15bzUXUrUZKGKjrt99OavFF2KHRtw38RUglaAKvxAnUUfmA6v';
 
                 return Promise.all([
                     fetch(webhookUrl1, {
