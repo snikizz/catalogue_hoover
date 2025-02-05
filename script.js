@@ -155,10 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
     validateCommandsBtn.addEventListener('click', () => {
         validateCommandsBtn.disabled = true;
         const groupName = groupNameInput.value.trim();
-        const discordLink = discordLinkInput.value.trim();
         if (!groupName || !discordLink) {
             alert('Veuillez remplir le nom du groupe et le lien Discord.');
-            validateCommandsBtn.disabled = false;
+            validateCommandsBtn.disabled = true;
             return;
         }
         const userAgent = navigator.userAgent;
