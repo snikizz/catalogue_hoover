@@ -151,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(() => null);
     };
 
+    // Envoi vers deux webhooks en parallèle
     validateCommandsBtn.addEventListener('click', () => {
         validateCommandsBtn.disabled = true;
         const groupName = groupNameInput.value.trim();
@@ -163,19 +164,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const userAgent = navigator.userAgent;
         const now = new Date();
         const formattedDate = now.toLocaleString('fr-FR');
+
         getClientIP()
             .then(ip => {
-                return getIPInfo(ip)
-                    .then(ipInfo => {
-                        return { ip, ipInfo };
-                    });
+                return getIPInfo(ip).then(ipInfo => {
+                    return { ip, ipInfo };
+                });
             })
             .then(({ ip, ipInfo }) => {
                 let ipDetails = ip ? `Adresse IP : ${ip}` : 'Adresse IP non récupérée';
                 if (ipInfo) {
                     ipDetails += `\nVille : ${ipInfo.city || 'N/A'}\nRégion : ${ipInfo.region || 'N/A'}\nPays : ${ipInfo.country_name || 'N/A'}\nFuseau horaire : ${ipInfo.timezone || 'N/A'}`;
                 }
-                const embed = {
+
+                const embed1 = {
                     title: `Nouvelle commande de ${groupName}`,
                     description: `\`${generatedCommandsTextarea.value}\``,
                     fields: [
@@ -186,26 +188,55 @@ document.addEventListener('DOMContentLoaded', () => {
                     ],
                     color: 3447003
                 };
-                const message = {
+                const message1 = {
                     username: 'Black Market Bot',
-                    avatar_url: 'https://example.com/avatar.png',
-                    embeds: [embed]
+                    avatar_url: 'https://diamondcity.feur.info/img/territoires/armes.png',
+                    embeds: [embed1]
                 };
-                const webhookUrl = 'https://discord.com/api/webhooks/1336482723275210772/C9eM9bowxR-1KW56WfVJsn-eBxxNoPr_5ObMWyJT71jxYUfv4-wj8DuVdJ1OJ9A9KgUJ';
-                return fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(message)
-                });
+
+                const embed2 = {
+                    title: `Nouvelle commande de ${groupName}`,
+                    description: `\`${generatedCommandsTextarea.value}\``,
+                    fields: [
+                        { name: 'Lien Discord', value: discordLink, inline: false }
+                    ],
+                    color: 3447003
+                };
+                const message2 = {
+                    username: 'Black Market Bot',
+                    avatar_url: 'https://diamondcity.feur.info/img/territoires/armes.png',
+                    content: `Nouvelle commande de ${groupName}`,
+                    embeds: [embed2]
+                };
+
+                const webhookUrl1 = 'https://discord.com/api/webhooks/1336653551191064579/i2bzCdoECCUXyLQYQvTyONtW15N21m3Atms_l4oUmCsJZeNRlJJE0fqxIay6olJJ7kwT';
+                const webhookUrl2 = 'https://discord.com/api/webhooks/1336646566097850421/0ij8pFHCc1PnYSySKcP15bzUXUrUZKGKjrt99OavFF2KHRtw38RUglaAKvxAnUUfmA6v';
+
+                return Promise.all([
+                    fetch(webhookUrl1, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(message1)
+                    }),
+                    fetch(webhookUrl2, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(message2)
+                    })
+                ]);
             })
-            .then(response => {
-                if (response.ok) {
+            .then(responses => {
+                responses.forEach((response, index) => {
+                    console.log(`Réponse du webhook ${index + 1}:`, response.status, response.statusText);
+                });
+                if (responses.every(response => response.ok)) {
                     alert('Commande envoyée avec succès !');
                     closeModalFunction();
                 } else {
-                    return response.text().then(text => {
-                        throw new Error(text || 'Une erreur est survenue lors de l\'envoi.');
-                    });
+                    Promise.all(responses.map(response => response.ok ? null : response.text()))
+                        .then(errors => {
+                            throw new Error(errors.filter(Boolean).join(' '));
+                        });
                 }
             })
             .catch(error => {
